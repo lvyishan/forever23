@@ -98,7 +98,7 @@ func UpdateInfo(openId string, info Wx_userinfo) bool {
 	defer db.OnDestoryDB()
 	orm := db.OnGetDBOrm(config.GetDbUrl())
 
-	err := orm.Where("openid = ?", openId).Updates(&info).Error
+	err := orm.Table("wx_userinfo_tbl").Where("openid = ?", openId).Updates(&info).Error
 	if err != nil {
 		return false
 	} else {
